@@ -17,27 +17,79 @@
     <div class="swier-area">
       <van-swipe :autoplay="1000">
         <van-swipe-item v-for="(banner, index) in bannerPicArray" :key="index">
-          <img v-lazy="banner.imageUrl" width="100%" height="100%"/>
+          <img v-lazy="banner.image" width="100%" height="100%"/>
         </van-swipe-item>
       </van-swipe>
     </div>
+    <!-- type bar -->
+    <div class="type-bar">
+      <div v-for="(cate,index) in category" :key="index">
+        <img v-lazy="cate.image" width="90%">
+        <span>{{cate.mallCategoryName}}</span>
+      </div>
+    </div>
+  <!-- adbanner -->
+  <div>
+    <img v-lazy="adBanner" width="100%">
+  </div>
+  <!-- recommend goods -->
+  <div class="recommend-area">
+    <div class="recommend-title">
+      商品推荐
+    </div>
+    <div class="recommend-body">
+      <swiper>
+        <swiper-slide v-for="(item,index)in recommendGoods" :key="index">
+          <div class="recommend-item">
+            <img :src="item.image" width="80%">
+            <div></div>
+            <div></div>
+          </div>
+        </swiper-slide>
+      </swiper>
+    </div>
+  </div>
   </div>
 </template>
 
 <script>
+  import axios from 'axios'
+  import 'swiper/dist/css/swiper.css'
+  import {swiper,swiperSlide} from 'vue-awesome-swiper'
   export default {
     data() {
       return {
         msg: 'shopping mall',
         locationIcon:require('../../assets/images/location.png'),
         searchIcon:require('../../assets/images/search.png'),
-        bannerPicArray:[
-              {imageUrl:'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3605435051,4282311128&fm=26&gp=0.jpg'},
-              {imageUrl:'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3647426405,3317636312&fm=26&gp=0.jpg'},
-              {imageUrl:'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3061278420,1580159419&fm=26&gp=0.jpg'},
-        ]
+        bannerPicArray:[],
+        category: [],
+        adBanner:'',
+        recommendGoods:[],
       }
     },
+    components:{
+      swiper,
+      swiperSlide
+    },
+    created(){
+      axios({
+        url:'https://www.easy-mock.com/mock/5f2e0849f8b3981de71e1188/vue-koa--webapp/index',
+        method:'get',
+      })
+      .then(response => {
+        console.log(response)
+        if(response.status == 200){
+          this.category = response.data.data.category;
+          this.adBanner = response.data.data.advertesPicture.PICTURE_ADDRESS;
+          this.bannerPicArray = response.data.data.slides;
+          this.recommendGoods = response.data.data.recommend;
+        }
+      })
+      .catch(error => {
+        console.log(error) 
+      })
+    }
   }
 </script>
 
@@ -71,7 +123,31 @@
     max-height: 12rem;
     overflow: hidden;
   }
- 
+ .type-bar{
+   background-color: #fff;
+   margin: .3rem .3rem .3rem .3rem;
+   border-radius: .3rem;
+   font-size:14px;
+   display:flex;
+   flex-direction: row;
+   flex-wrap: nowrap;
+ }
+ .type-bar div{
+   padding: .3rem;
+   font-size: 12px;
+   text-align: center;
+ }
+ .recommend-area{
+   background-color: #fff;
+   margin-top: .3rem;
+
+ }
+ .recommend-title{
+   border-bottom: 1px solid #ddd;
+   padding: .2rem;
+   font-size: 14px;
+   color: #FFD700;
+ }
   
 
 </style>
