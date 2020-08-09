@@ -14,7 +14,7 @@
     </van-row>
     </div>
     <!-- swiper -->
-    <div class="swier-area">
+    <div class="swiper-area">
       <van-swipe :autoplay="1000">
         <van-swipe-item v-for="(banner, index) in bannerPicArray" :key="index">
           <img v-lazy="banner.image" width="100%" height="100%"/>
@@ -38,12 +38,12 @@
       商品推荐
     </div>
     <div class="recommend-body">
-      <swiper>
-        <swiper-slide v-for="(item,index)in recommendGoods" :key="index">
+      <swiper :options="swiperOption">
+        <swiper-slide v-for="(item,index) in recommendGoods" :key="index">
           <div class="recommend-item">
             <img :src="item.image" width="80%">
-            <div></div>
-            <div></div>
+            <div>{{item.goodsName}}</div>
+            <div>￥{{item.price}}(￥{{item.mallPrice}})</div>
           </div>
         </swiper-slide>
       </swiper>
@@ -54,8 +54,8 @@
 
 <script>
   import axios from 'axios'
-  import 'swiper/dist/css/swiper.css'
-  import {swiper,swiperSlide} from 'vue-awesome-swiper'
+  import 'swiper/swiper-bundle.css'
+  import {Swiper,SwiperSlide} from 'vue-awesome-swiper'
   export default {
     data() {
       return {
@@ -66,11 +66,14 @@
         category: [],
         adBanner:'',
         recommendGoods:[],
+        swiperOption:{
+          slidesPerView:3,
+        }
       }
     },
     components:{
-      swiper,
-      swiperSlide
+      Swiper,
+      SwiperSlide
     },
     created(){
       axios({
@@ -118,7 +121,7 @@
     padding-top: .2rem;
     padding-left: 1.3rem;
   }
-  .swier-area{
+  .swiper-area{
     clear: both;
     max-height: 12rem;
     overflow: hidden;
@@ -148,6 +151,15 @@
    font-size: 14px;
    color: #FFD700;
  }
-  
+  .recommend-body{
+    border-bottom: 1px solid #eee;
 
+  }
+  .recommend-item{
+    width: 99%;
+    border-right: 1px solid #eee;
+    font-size: 12px;
+    text-align: center;
+
+  }
 </style>
