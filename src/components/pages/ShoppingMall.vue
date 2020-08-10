@@ -49,6 +49,7 @@
       </swiper>
     </div>
   </div>
+   <floor-component :floorData="floor1"></floor-component>
   </div>
 </template>
 
@@ -56,6 +57,8 @@
   import axios from 'axios'
   import 'swiper/swiper-bundle.css'
   import {Swiper,SwiperSlide} from 'vue-awesome-swiper'
+  import floorComponent from '../component/floorComponent'
+  
   export default {
     data() {
       return {
@@ -68,16 +71,21 @@
         recommendGoods:[],
         swiperOption:{
           slidesPerView:3,
-        }
+        },
+        floor1:[],
+       
       }
     },
     components:{
       Swiper,
-      SwiperSlide
+      SwiperSlide,
+      floorComponent
+     
+
     },
     created(){
       axios({
-        url:'https://www.easy-mock.com/mock/5f2e0849f8b3981de71e1188/vue-koa--webapp/index',
+        url:'https://easy-mock.sucaidaohang.com/mock/5f30a1e2eeda710d1440d546/vue-koa--webapp/index',
         method:'get',
       })
       .then(response => {
@@ -87,6 +95,8 @@
           this.adBanner = response.data.data.advertesPicture.PICTURE_ADDRESS;
           this.bannerPicArray = response.data.data.slides;
           this.recommendGoods = response.data.data.recommend;
+          this.floor1 = response.data.data.floor1;
+          
         }
       })
       .catch(error => {
@@ -146,20 +156,25 @@
 
  }
  .recommend-title{
-   border-bottom: 1px solid #ddd;
+   border: 1px solid #ddd;
    padding: .2rem;
    font-size: 14px;
-   color: #FFD700;
+   color: #33322c;
+   border-radius: 1.2rem;
+   background-color: #FFD700;
  }
   .recommend-body{
-    border-bottom: 1px solid #eee;
-
+    border-bottom: 1px solid rgb(233, 231, 229);
   }
   .recommend-item{
-    width: 99%;
-    border-right: 1px solid #eee;
+    width: 88%;
+    border: 1px solid rgb(238, 229, 153);
     font-size: 12px;
+    padding:.1rem .3rem;
+    margin-top: .7rem;
     text-align: center;
+    border-radius: 1.2rem;
 
   }
+  
 </style>
