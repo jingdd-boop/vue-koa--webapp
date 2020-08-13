@@ -2,22 +2,23 @@
   <div>
     <!-- 楼层 -->
   <div class="floor">
+    <div class="floor-title">{{floorTitle}}</div>
     <div class="floor-anomaly">
       <div class="floor-one">
-        <img :src="floorData0.image" width="100%"/>
+        <img :src="floorData0.image" width="100%" class="img"/>
       </div>
       <div>
         <div class="floor-two">
-           <img :src="floorData1.image" width="100%"/>
+           <img :src="floorData1.image" width="90%" class="img"/>
         </div>
         <div class="floor-two">
-           <img :src="floorData2.image" width="100%"/>
+           <img :src="floorData2.image" width="90%" class="img"/>
          </div>
        </div>
     </div>
     <div class="floor-rule">
       <div v-for="(item,index) in floorData.slice(3)" :key="index">
-        <img :src="item.image" width="100%">
+        <img :src="item.image" width="100%" class="img">
       </div>
     </div>
   </div>
@@ -26,7 +27,7 @@
 
 <script>
   export default {
-    props:['floorData'],
+    props:['floorData','floorTitle'],
     data(){
       return{
         floorData0:{},
@@ -49,36 +50,83 @@
 </script>
 
 <style  scoped>
+.floor-title{
+  text-align: center;
+  font-size: 14px;
+  height: 1.8rem;
+  line-height: 1.8rem;
+}
 .floor-anomaly{
     display: flex;
     flex-direction: row;
-    background-color: #fff;
+    /* background-color: #fff; */
     border-bottom: 1px solid #ddd;
+    margin: .2rem 0;
   }
   .floor-anomaly div{
     width: 10rem;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    margin-top: .3rem;
   }
-  .floor-one{
-    border-right: 1px solid #ddd;
+  /* .floor-one{
+    border: 1px solid #ddd;
+     box-shadow: 5px 5px 10px #dfdfdc, 
+             -5px -5px 10px #fffffe;
   }
   .floor-two{
-    border-bottom: 1px solid #ddd;
+    border: 1px solid #ddd;
+     box-shadow: 5px 5px 10px #dfdfdc, 
+             -5px -5px 10px #fffffe;
+  } */
+  .floor-one .img{ 
+   margin-top: .6rem;
+   border: 1px solid #ddd;
+   /* border-radius: 1.2rem; */
+   /* box-shadow: 2px 3px 5px #d3d3d1, 
+             -2px -3px 5px #fafaf9; */
+  }
+  .floor-two .img{
+   padding-left: .3rem; 
+   padding-top: .4rem;
+   /* border: 1px solid #fff; */
+   /* border-radius: 1.2rem; */
+   /* box-shadow: 2px 3px 5px #d3d3d1, 
+             -2px -3px 5px #fafaf9; */
   }
 .floor-rule{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background-color: #fff;
+  /* background-color: #fff; */
+  
 }
 .floor-rule div{
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 10rem;
   border-bottom: 1px solid #ddd;
+  padding-right: .2rem;
+ 
+}
+.floor-rule .img{
+   
+  /* border: 1px solid #ddd;  */
+   border-radius: 1.2rem;
+    box-shadow: 5px 5px 10px #d3d3d1, 
+             -5px -5px 10px #fafaf9; 
 }
 .floor-rule div:nth-child(odd){
   border-right: 1px solid #ddd;
 }
+.recommend-title{
+   border: 1px solid #ddd;
+   padding: .2rem;
+   font-size: 14px;
+   color: #33322c;
+   border-radius: 1.2rem;
+   background-color: #46da9c;
+   /* box-shadow: 5px 5px 10px #d3d3d1, 
+             -5px -5px 10px #fafaf9; */
+ }
 </style>
