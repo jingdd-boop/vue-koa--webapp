@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "koa": "^2.13.0"
+    "glob": "^7.1.6",
+    "koa": "^2.13.0",
+    "mongoose": "^5.9.29"
   }
 }
