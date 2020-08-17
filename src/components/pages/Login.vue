@@ -1,7 +1,7 @@
 <template>
     <div>
        <van-nav-bar
-        title="用户注册"
+        title="用户登录"
         left-text="返回"
         left-arrow
         @click-left="goBack"
@@ -26,7 +26,7 @@
              :error-message="passwordErrorMsg"
         />
         <div class="register-button">
-            <van-button type="primary" @click="registerAction" size="large" :loading="openLoading">马上注册</van-button>
+            <van-button type="primary" @click="LoginAction" size="large" :loading="openLoading">登录</van-button>
         </div>
        </div>
 
@@ -47,20 +47,26 @@ import { Toast } from 'vant'
                 passwordErrorMsg:'',   //当密码出现错误的时候
             }
         },
+        created(){
+            if(localStorage.userInfo){
+            Toast.success('您已经登录')
+            this.$router.push('/')
+     }
+        },
         methods: {
             goBack() {
                 this.$router.go(-1)   
             },
-            registerAction(){
+            LoginAction(){
                 // if(this.checkForm()){
                 //     this.axiosRegisterUser()
                 // }
-                this.checkForm() && this.axiosRegisterUser()
+                this.checkForm() && this.axiosLoginUser()
             },
-            axiosRegisterUser(){
+            axiosLoginUser(){
                 this.openLoading=true
             axios({
-                url:url.registerUser,
+                url:url.login,
                 method:'post',
                 data:{
                     userName:this.username,
@@ -68,19 +74,34 @@ import { Toast } from 'vant'
                 }
             })
             .then(response=>{
-                console.log(response)
-                if(response.data.code==200){
-                   Toast.success('注册成功')
-                   this.$router.push('/')
-                }else{
-                    console.log(response.data.message)
-                    this.openLoading=false
-                   Toast.fail('注册失败')
-                }
-            })
-            .catch(err=>{
-                Toast.fail('注册失败')  
-                 this.openLoading=false
+
+                new Promise((resolve,reject)=>{
+        localStorage.userInfo={userName:this.username}
+        setTimeout(()=>{
+            resolve()
+        },500)
+        }).then(()=>{
+            Toast.success('登录成功')
+            this.$router.push('/')
+        }).catch(err=>{
+            Toast.fail('登录状态保存失败')
+            console.log(err)
+        })
+
+            console.log(response)
+        if(response.data.code==200 && response.data.message){
+
+            Toast.success('登录成功')
+            this.$router.push('/')
+         }else{
+            Toast.fail('登录失败')
+            this.openLoading = false
+            }
+        })
+        .catch(err=>{
+             console.log(error)
+            Toast.fail('登录失败')
+            this.openLoading = false
             })
         },
         checkForm(){
