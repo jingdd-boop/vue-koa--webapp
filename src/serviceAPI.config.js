@@ -1,4 +1,4 @@
-const BASEURL = "https://www.easy-mock.com/mock/5ae2eeb23fbbf24d8cd7f0b6/SmileVue/"
+const BASEURL = "https://www.easy-mock.com/mock/5f2e0849f8b3981de71e1188/vue-koa--webapp/"
 const LOCALURL = "http://localhost:3000/"
 const URL = {
     getShoppingMallInfo:BASEURL+'index',
