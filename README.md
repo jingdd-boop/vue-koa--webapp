@@ -691,30 +691,6 @@ const userSchema = new Schema({
 mongoose.model('User',userSchema)
 ```
 
-二十、载入schema和数据的插入和查询
-Glob:node的glob模块允许你使用*等符号，来写一个glob规则，像在shell里一样，获取匹配对应规则文件
-Resolve：将一系列或路劲段解析为绝对路径
-二十一、打造安全的用户密码加密机制
-加密处理
-加盐处理
-Bcrypt跨平台的文件加密工具
-npm install --save bcrypt
-二十二、编写组册页面前端视图
-二十三、koa2用户操作路由模块化
-npm install --save koa-router
-二十四、打通前后端通讯
-npm install --save koa-bodyparser
-
-npm install --save koa2-cors（跨域）
-二十五、用户注册的数据库操作
-二十六、注册的防止重复提交操作
-二十七、注册的前端验证
-二十八、用户登录页面和路由的制作
-二十九、登录服务端逻辑编写
-三十、登录的前端交互效果制作，登录状态存储
-三十一、商品详细数据的提纯操作
-
-
 
 
 
