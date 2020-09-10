@@ -22,30 +22,50 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ## 项目制作（移动商城）
 
 ### 一、项目搭建
-Npm
-Node
-npm install vue-cli -g
-vue init webpack
-npm run dev
+
+ - Npm
+ - Node
+ - npm install vue-cli -g
+ - vue init webpack
+ - npm run dev
+
 ### 二、引入Vant样式组件库（全局）
-①npm i vant -S
-②src/main.js: 
+
+ - ①npm i vant -S
+ - ②src/main.js:
+
+```javascript
 import Vant from 'vant'//引入vant组件
 import 'vant/lib/vant-css/index.css'//引入组件样式
 Vue.use(Vant)//使用组件
-③在vue组件中使用
+```
+
+ - ③在vue组件中使用
+
+```javascript
 <van-button type="primary">主要按钮</van-button>  
+```
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200910091145135.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1Njc4NjA3,size_16,color_FFFFFF,t_70#pic_center)
+
 2、引入Vant样式组件库（不是全局引用，而是按需引用）
 ①npm i babel-plugin-import -D
 ②设置.babelrc
+
+```javascript
  "plugins": [
     、、、其他代码
      ["import",{"libraryName":"vant","style":true}]
 
     ]
+```
+
 ③src/main.js: 
+
+```javascript
 import {Button} from 'vant'
 Vue.use(Button)
+```
+
 打包减少很多，速度会加快一些
 
 ### 三、移动端适配方法
@@ -54,7 +74,8 @@ Vue.use(Button)
 （3）flex布局 √
 了解Rem ：相对长度单位，相对于根元素（html元素）font-size计算属性的倍数
 Index.html:
- ```javascript
+
+```javascript
  <style>
       .test{
         width: 320px;
@@ -74,10 +95,16 @@ Index.html:
       <p class="hello"> hello jing</p>
     </div>  
   </body>
- ``` 
+  
+```
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200910091301280.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1Njc4NjA3,size_16,color_FFFFFF,t_70#pic_center)
+
 没有适配，如何适配？？
- ```javascript
+ 
  <!-- iphone5 1rem = 16px html font-size = 16px-->
+
+```javascript
 <style>
       .test{
         width: 20rem;
@@ -107,13 +134,16 @@ Index.html:
 //把最外层html元素font-size设置
 </script>
 ```
-  
 
-四、首页布局
+  ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200910091322486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1Njc4NjA3,size_16,color_FFFFFF,t_70#pic_center)
+
+
+### 四、首页布局
 	首页路由的设置
 	快速建立首页（vue Vscode snippets）
 	Vant布局的方法介绍
 Main.js：
+
 ```javascript
 import {Button,Row,Col} from 'vant'
 Vue.use(Button).use(Row).use(Col)
@@ -125,9 +155,12 @@ ShoppingMall.vue:
       <van-col span="4">span:4</van-col>
     </van-row>
   </div>
-  ```
-五、顶部
- 
+```
+
+### 五、顶部
+ ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200910091337137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1Njc4NjA3,size_16,color_FFFFFF,t_70#pic_center)
+
+
 ```javascript
 <template>
   <div>
@@ -180,14 +213,18 @@ ShoppingMall.vue:
   }
 </style>
 ```
-六、首页轮播图
+
+### 六、首页轮播图
 
 	Vant轮播图组件的引入
+
 ```javascript
 import {Button,Row,Col,Swipe,SwipeItem} from 'vant'
 Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem)
 ```
+
 	编写轮播组件
+
 ```javascript
 <!-- swiper -->
     <div class="swier-area">
@@ -215,7 +252,9 @@ Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem)
   }
 </style>
 ```
+
 	实现图片懒加载
+
 ```javascript
 import {Button,Row,Col,Swipe,SwipeItem,Lazyload} from 'vant'
 Vue.use(Button).use(Row).use(Col).use(Swipe)
@@ -229,13 +268,17 @@ Vue.use(Button).use(Row).use(Col).use(Swipe)
     overflow: hidden;
   }
 ```
+
 	Chrome调试技巧
 六、easyMock和axios的使用
 
 	安装axios
+
 ```javascript
 npm install axios –save
+
 ```
+
 ```javascript
  import axios from 'axios'
 ```
@@ -253,14 +296,18 @@ npm install axios –save
         console.log(error)
       })
     }
-    ```
-七、mock数据使用和flex布局
+```
+
+### 七、mock数据使用和flex布局
  
 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200910091410769.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1Njc4NjA3,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200910091418471.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1Njc4NjA3,size_16,color_FFFFFF,t_70#pic_center)
 
  
-   Html布局
-   ```javascript
+ 	Html布局
+
+```javascript
  <!-- swiper -->
     <div class="swier-area">
       <van-swipe :autoplay="1000">
@@ -306,24 +353,34 @@ if(response.status == 200){
    text-align: center;
  }
 ```
+
 八、商品推荐
+
+```javascript
 npm install vue-awesome-swiper –save
+```
+
+```javascript
 全局引用
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 
 
 .use(VueAwesomeSwiper)
-局部组件引用
+```
+
 ```javascript
+局部组件引用
 import 'swiper/dist/css/swiper.css'
   import {Swiper , SwiperSlide} from 'vue-awesome-swiper'
 
  components:{
       Swiper , SwiperSlide
     },
-    ```
+```
+
 关于这个组件的引用，最好还是参考github文档
+
 ```javascript
  <!-- recommend goods -->
   <div class="recommend-area">
@@ -360,8 +417,9 @@ import 'swiper/dist/css/swiper.css'
     text-align: center;
 
   }
-  ```
-九、vue-awesome-swiper组件详细
+```
+
+### 九、vue-awesome-swiper组件详细
 	Swiper的基础用法
 	如何加分页器
 	竖屏切换效果
@@ -370,20 +428,31 @@ import 'swiper/dist/css/swiper.css'
 	Swiper的区域滚动效果
 	Swiper的分页器可以自由选择
 	无限循环滚动
-十、首页楼层
+### 十、首页楼层
 
 
 
-十一、楼层组件的封装和watch的使用
+### 十一、楼层组件的封装和watch的使用
 父组件：
 //页面 
-<floor-component :floorData="floor1"></floor-component>
-//引入
- import floorComponent from '../component/floorComponent'
-//注册
- floorComponent
-子组件
+
 ```javascript
+<floor-component :floorData="floor1"></floor-component>
+```
+
+//引入
+
+```javascript
+ import floorComponent from '../component/floorComponent'
+```
+
+//注册
+
+```javascript
+ floorComponent
+```
+
+子组件
 <script>
   export default {
     props:['floorData'],
@@ -405,8 +474,8 @@ import 'swiper/dist/css/swiper.css'
     }
   }
 </script>
-```
-十二、完善楼层组件（组件复用）
+### 十二、完善楼层组件（组件复用）
+
 ```javascript
  <floor-component :floorData="floor1" :floorTitle="floorName.floor1"></floor-component>
     <floor-component :floorData="floor2" :floorTitle="floorName.floor2"></floor-component>
@@ -421,8 +490,10 @@ this.floor1 = response.data.data.floor1;
           this.floor3 = response.data.data.floor3;
           this.floorName = response.data.data.floorName;
 ```
-十三、项目中Filter的使用
+
+### 十三、项目中Filter的使用
 方法1×
+
 ```javascript
 export function toMoney(money){
   let newMoney = money
@@ -435,7 +506,11 @@ export function toMoney(money){
 
   return newMoney;
 }
+```
+
 方法2√
+
+```javascript
 export function toMoney(money = 0){
   return money.toFixed(2);
 }
@@ -451,7 +526,9 @@ filters:{
 
  <div>￥{{item.price | moneyFilter}}(￥{{item.mallPrice | moneyFilter}})</div>
 ```
-十四、首页热卖组件和van-list使用
+
+### 十四、首页热卖组件和van-list使用
+
 ```javascript
 <div class="hot-area">
     <div class="hot-title">热卖商品</div>
@@ -476,12 +553,14 @@ filters:{
       line-height:1.8rem;
   }
 ```
-十五、服务接口API配置文件制作
+
+### 十五、服务接口API配置文件制作
 在开发中我们现在直接把数据接口文件写到了axios中，这样写如果地址改变或者接口改变，我们需要进入业务逻辑代码进行修改，维护起来会非常的麻烦。那这节课我们就把项目中用到的接口都单独拿出来，作一个接口配置文件serviceAPI.config.js。
 
 编写接口配置文件
 
 项目src目录下建立serviceAPI.config.js,然后打开编写如下代码。
+
 ```javascript
 const BASEURL = "https://www.easy-mock.com/mock/5ae2eeb23fbbf24d8cd7f0b6/SmileVue/"
 const URL = {
@@ -491,13 +570,14 @@ const URL = {
 
 module.exports = URL
 }
+```
+
 URL
-```
 编写好后，我们可以直接在要使用的文件中用import的形式引入。
-```javascript
 import url from '@/serviceAPI.config.js'
-```
+
 引入后就可以直接使用了。
+
 ```javascript
 axios({
     url: url.getShoppingMallInfo,
@@ -505,12 +585,16 @@ axios({
     })
 })
 ```
-总结：这节课的内容虽然很短，但是这是作配置文件的一种方法，在项目中你想作任何配置文件完全可以使用这节所学的内容。希望小伙伴们可以把这种最基本的方法学会，并应用在工作中。
+
+**总结**：这节课的内容虽然很短，但是这是作配置文件的一种方法，在项目中你想作任何配置文件完全可以使用这节所学的内容。希望小伙伴们可以把这种最基本的方法学会，并应用在工作中。
 十六、安装koa2到项目中来
+
 ```javascript
 npm init -y
 npm install koa –save
+```
 
+```javascript
 const Koa = require('koa')
 const app =new Koa()
 
@@ -522,11 +606,13 @@ app.listen(3000,()=>{
   console.log('[server] star')
 })
 ```
-十七、安装MongoDB数据库
+
+### 十七、安装MongoDB数据库
 1.安装MongoDB
 2.安装robmongo
-十八、用mongoose连接数据库
+### 十八、用mongoose连接数据库
 Mongoose是一个开源的封装好的实现Node和mongoDB数据通讯的数据建模库
+
 ```javascript
 const mongoose = require('mongoose')
 const db = "mongodb://localhost/smile-db"
@@ -577,20 +663,21 @@ const { connect } = require('./database/init.js')
 ;(async ()=>{
   await connect()
 })()
-
-
 ```
-十九、mongoose的schema
+
+### 十九、mongoose的schema
 Schema:用来定义表的模板，实现和MongoDB数据库的映射
 Model：具备表操作能力的一个集合，是mongoose的核心能力
 Entity：类似记录，有model创建的实体
+
 ```javascript
 const mongoose = require('mongoose')    //引入Mongoose
 const Schema = mongoose.Schema          //声明Schema
 let ObjectId = Schema.Types.ObjectId    //声明Object类型
+```
 
+```javascript
 //创建我们的用户Schema
-
 const userSchema = new Schema({
     UserId:ObjectId,
     userName:{unique:true,type:String},
@@ -599,9 +686,11 @@ const userSchema = new Schema({
     lastLoginAt:{type:Date,default:Date.now()}
 
 })
-```
+
 //发布模型
 mongoose.model('User',userSchema)
+```
+
 二十、载入schema和数据的插入和查询
 Glob:node的glob模块允许你使用*等符号，来写一个glob规则，像在shell里一样，获取匹配对应规则文件
 Resolve：将一系列或路劲段解析为绝对路径
@@ -624,3 +713,15 @@ npm install --save koa2-cors（跨域）
 二十九、登录服务端逻辑编写
 三十、登录的前端交互效果制作，登录状态存储
 三十一、商品详细数据的提纯操作
+
+
+
+
+
+
+
+
+
+
+
+
